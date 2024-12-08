@@ -45,7 +45,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($request->only('email', 'password'))) {
             $request->session()->regenerate();
-            return redirect()->route('dashboard');
+            return redirect()->route('home');
         }
 
         return back()->withErrors(['email' => 'Invalid credentials.']);
@@ -57,6 +57,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login.form');
+        return redirect()->route('home');
     }
 }
